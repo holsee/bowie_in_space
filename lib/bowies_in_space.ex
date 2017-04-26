@@ -1,18 +1,23 @@
-defmodule BowiesInSpace do
-  @moduledoc """
-  Documentation for BowiesInSpace.
-  """
+defmodule BowiesInSpace.API do
+  use GenServer
 
-  @doc """
-  Hello world.
+  @server __MODULE__
 
-  ## Examples
+  # Public API
 
-      iex> BowiesInSpace.hello
-      :world
-
-  """
-  def hello do
-    :world
+  def start_link() do
+    GenServer.start_link(@server, [], name: @server)
   end
+
+  def get() do
+    GenServer.call(@server, :get)
+  end
+
+  # Callbacks
+
+  def handle_call(:get, _from, state) do
+    # TODO: call API
+    {:reply, :not_implement, state}
+  end
+
 end

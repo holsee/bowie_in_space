@@ -10,8 +10,8 @@ defmodule BowiesInSpace.Application do
 
     # Define workers and child supervisors to be supervised
     children = [
-      # Starts a worker by calling: BowiesInSpace.Worker.start_link(arg1, arg2, arg3)
-      # worker(BowiesInSpace.Worker, [arg1, arg2, arg3]),
+      # Starts a worker by calling: BowiesInSpace.API.start_link()
+      worker(BowiesInSpace.API, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
