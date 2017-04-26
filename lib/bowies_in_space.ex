@@ -5,8 +5,8 @@ defmodule BowiesInSpace do
 
   # Public API
 
-  def start_link() do
-    GenServer.start_link(@server, [], name: @server)
+  def start_link(api) do
+    GenServer.start_link(@server, %{ api: api }, name: @server)
   end
 
   def who_in_space do
@@ -15,8 +15,12 @@ defmodule BowiesInSpace do
 
   # Callbacks
 
+  def init(state) do
+    {:ok, state}
+  end
+
   def handle_cast(:who_in_space?, state) do
-    BowiesInSpace.API.get
+    state.api.get
     |> Enum.map(&print/1)
     {:noreply, state}
   end
