@@ -11,12 +11,14 @@ defmodule BowiesInSpace.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Starts a worker by calling: BowiesInSpace.API.start_link()
+      worker(BowiesInSpace, []),
       worker(BowiesInSpace.API, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: BowiesInSpace.Supervisor]
+    opts = [strategy: :one_for_one,
+            name: BowiesInSpace.Supervisor]
     Supervisor.start_link(children, opts)
   end
 end
